@@ -5,93 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Password Strength Detector</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-.container {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    width: 350px;
-    text-align: center;
-}
-input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-.strength-bar {
-    width: 100%;
-    height: 10px;
-    background: #ddd;
-    border-radius: 10px;
-    margin-top: 15px;
-    overflow: hidden;
-}
-.bar {
-    height: 100%;
-    width: 0%;
-    transition: 0.3s;
-}
-#strength-text {
-    margin-top: 10px;
-    font-weight: bold;
-}
+body{font-family:Arial,sans-serif;margin:0;background:linear-gradient(135deg,#667eea,#764ba2);}
+nav{background:#222;padding:15px;text-align:center;}
+nav a{color:#fff;text-decoration:none;margin:0 15px;font-weight:bold;}
+section{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
+.card{background:#fff;padding:30px;border-radius:15px;box-shadow:0 10px 20px rgba(0,0,0,.2);width:420px;max-width:90%;text-align:center;}
+input{width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;box-sizing:border-box;}
+.strength-bar{width:100%;height:10px;background:#ddd;border-radius:10px;margin-top:15px;overflow:hidden;}
+.bar{height:100%;width:0%;transition:.3s;}
 </style>
 </head>
 <body>
-<div class="container">
-    <h2>Password Strength Detector</h2>
-    <input type="password" id="password" placeholder="Enter Password">
-    <div class="strength-bar">
-        <div class="bar" id="bar"></div>
-    </div>
-    <p id="strength-text">Strength: None</p>
+<nav>
+<a href="#checker">Password Checker</a>
+<a href="#developer">About Developer</a>
+</nav>
+
+<section id="checker">
+<div class="card">
+<h2>Password Strength Detector</h2>
+<p>Maximum Password Length: 16 Characters</p>
+<input type="password" id="password" maxlength="16" placeholder="Enter Password">
+<div class="strength-bar"><div class="bar" id="bar"></div></div>
+<p id="strength-text">Strength: None</p>
 </div>
+</section>
+
+<section id="developer">
+<div class="card">
+<h2>About Developer</h2>
+<p><b>Name:</b> Yagnik Ramanuj</p>
+<p><b>College:</b> Sir Bhavsinhji Polytechnic Institute, Bhavnagar</p>
+<p><b>Branch:</b> EC</p>
+<p><b>Semester:</b> 5th</p>
+<p><b>Project Duration:</b> 15 Days Summer Internship</p>
+<p><b>Internship By:</b> CSRBOX</p>
+</div>
+</section>
 
 <script>
-const password = document.getElementById("password");
-const bar = document.getElementById("bar");
-const strengthText = document.getElementById("strength-text");
+const password=document.getElementById('password');
+const bar=document.getElementById('bar');
+const txt=document.getElementById('strength-text');
 
-password.addEventListener("input", () => {
-    let pass = password.value;
-    let score = 0;
+password.addEventListener('input',()=>{
+let pass=password.value;
+let score=0;
+if(pass.length>=8) score++;
+if(/[A-Z]/.test(pass)) score++;
+if(/[a-z]/.test(pass)) score++;
+if(/[0-9]/.test(pass)) score++;
+if(/[^A-Za-z0-9]/.test(pass)) score++;
 
-    if (pass.length >= 8) score++;
-    if (/[A-Z]/.test(pass)) score++;
-    if (/[a-z]/.test(pass)) score++;
-    if (/[0-9]/.test(pass)) score++;
-    if (/[^A-Za-z0-9]/.test(pass)) score++;
+if(pass.length===0){
+bar.style.width='0%';
+txt.textContent='Strength: None';
+return;
+}
 
-    const levels = [
-        ["0%","","Strength: None"],
-        ["20%","red","Strength: Very Weak"],
-        ["40%","orange","Strength: Weak"],
-        ["60%","gold","Strength: Medium"],
-        ["80%","lightgreen","Strength: Strong"],
-        ["100%","green","Strength: Very Strong"]
-    ];
+const level=[
+['20%','red','Very Weak'],
+['20%','red','Very Weak'],
+['40%','orange','Weak'],
+['60%','gold','Medium'],
+['80%','lightgreen','Strong'],
+['100%','green','Very Strong']
+];
 
-    if(pass.length === 0){
-        bar.style.width = "0%";
-        strengthText.textContent = "Strength: None";
-        return;
-    }
-
-    bar.style.width = levels[score][0];
-    bar.style.background = levels[score][1];
-    strengthText.textContent = levels[score][2];
+bar.style.width=level[score][0];
+bar.style.background=level[score][1];
+txt.textContent='Strength: '+level[score][2];
 });
 </script>
 </body>
