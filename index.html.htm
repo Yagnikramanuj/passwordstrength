@@ -1,0 +1,543 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Shruti;
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Emoji";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-IN style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&lt;!DOCTYPE html&gt;</p>
+
+<p class=MsoNormal>&lt;html lang=&quot;en&quot;&gt;</p>
+
+<p class=MsoNormal>&lt;head&gt;</p>
+
+<p class=MsoNormal>&lt;meta charset=&quot;UTF-8&quot;&gt;</p>
+
+<p class=MsoNormal>&lt;meta name=&quot;viewport&quot;
+content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</p>
+
+<p class=MsoNormal>&lt;title&gt;Password Strength Detector&lt;/title&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;style&gt;</p>
+
+<p class=MsoNormal>*{</p>
+
+<p class=MsoNormal>    margin:0;</p>
+
+<p class=MsoNormal>    padding:0;</p>
+
+<p class=MsoNormal>    box-sizing:border-box;</p>
+
+<p class=MsoNormal>    font-family:Arial,sans-serif;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>body{</p>
+
+<p class=MsoNormal>    min-height:100vh;</p>
+
+<p class=MsoNormal>    display:flex;</p>
+
+<p class=MsoNormal>    justify-content:center;</p>
+
+<p class=MsoNormal>    align-items:center;</p>
+
+<p class=MsoNormal>    background:linear-gradient(135deg,#4f46e5,#7c3aed);</p>
+
+<p class=MsoNormal>    padding:20px;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.container{</p>
+
+<p class=MsoNormal>    background:#fff;</p>
+
+<p class=MsoNormal>    width:100%;</p>
+
+<p class=MsoNormal>    max-width:420px;</p>
+
+<p class=MsoNormal>    padding:30px;</p>
+
+<p class=MsoNormal>    border-radius:15px;</p>
+
+<p class=MsoNormal>    box-shadow:0 10px 25px rgba(0,0,0,.2);</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>h1{</p>
+
+<p class=MsoNormal>    text-align:center;</p>
+
+<p class=MsoNormal>    margin-bottom:20px;</p>
+
+<p class=MsoNormal>    color:#333;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.input-box{</p>
+
+<p class=MsoNormal>    display:flex;</p>
+
+<p class=MsoNormal>    margin-bottom:15px;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.input-box input{</p>
+
+<p class=MsoNormal>    flex:1;</p>
+
+<p class=MsoNormal>    padding:12px;</p>
+
+<p class=MsoNormal>    border:2px solid #ddd;</p>
+
+<p class=MsoNormal>    border-radius:8px 0 0 8px;</p>
+
+<p class=MsoNormal>    outline:none;</p>
+
+<p class=MsoNormal>    font-size:16px;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.input-box button{</p>
+
+<p class=MsoNormal>    width:55px;</p>
+
+<p class=MsoNormal>    border:none;</p>
+
+<p class=MsoNormal>    background:#4f46e5;</p>
+
+<p class=MsoNormal>    color:#fff;</p>
+
+<p class=MsoNormal>    cursor:pointer;</p>
+
+<p class=MsoNormal>    border-radius:0 8px 8px 0;</p>
+
+<p class=MsoNormal>    font-size:18px;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.strength-meter{</p>
+
+<p class=MsoNormal>    width:100%;</p>
+
+<p class=MsoNormal>    height:12px;</p>
+
+<p class=MsoNormal>    background:#ddd;</p>
+
+<p class=MsoNormal>    border-radius:20px;</p>
+
+<p class=MsoNormal>    overflow:hidden;</p>
+
+<p class=MsoNormal>    margin:15px 0;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#strength-bar{</p>
+
+<p class=MsoNormal>    height:100%;</p>
+
+<p class=MsoNormal>    width:0%;</p>
+
+<p class=MsoNormal>    transition:.3s ease;</p>
+
+<p class=MsoNormal>    background:#ccc;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>#strength-text{</p>
+
+<p class=MsoNormal>    text-align:center;</p>
+
+<p class=MsoNormal>    font-weight:bold;</p>
+
+<p class=MsoNormal>    margin-bottom:15px;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.requirements{</p>
+
+<p class=MsoNormal>    list-style:none;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.requirements li{</p>
+
+<p class=MsoNormal>    margin:8px 0;</p>
+
+<p class=MsoNormal>    color:#555;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>.footer{</p>
+
+<p class=MsoNormal>    text-align:center;</p>
+
+<p class=MsoNormal>    margin-top:15px;</p>
+
+<p class=MsoNormal>    color:#888;</p>
+
+<p class=MsoNormal>    font-size:14px;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&lt;/style&gt;</p>
+
+<p class=MsoNormal>&lt;/head&gt;</p>
+
+<p class=MsoNormal>&lt;body&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;div class=&quot;container&quot;&gt;</p>
+
+<p class=MsoNormal>    &lt;h1&gt;<span style='font-family:"Segoe UI Emoji",sans-serif'>&#128272;</span>
+Password Strength Detector&lt;/h1&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;div class=&quot;input-box&quot;&gt;</p>
+
+<p class=MsoNormal>        &lt;input</p>
+
+<p class=MsoNormal>            type=&quot;password&quot;</p>
+
+<p class=MsoNormal>            id=&quot;password&quot;</p>
+
+<p class=MsoNormal>            placeholder=&quot;Enter your password&quot;&gt;</p>
+
+<p class=MsoNormal>        &lt;button id=&quot;toggleBtn&quot;&gt;<span
+style='font-family:"Segoe UI Symbol",sans-serif'>&#128065;</span>&lt;/button&gt;</p>
+
+<p class=MsoNormal>    &lt;/div&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;div class=&quot;strength-meter&quot;&gt;</p>
+
+<p class=MsoNormal>        &lt;div id=&quot;strength-bar&quot;&gt;&lt;/div&gt;</p>
+
+<p class=MsoNormal>    &lt;/div&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;p id=&quot;strength-text&quot;&gt;Strength:
+None&lt;/p&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;ul class=&quot;requirements&quot;&gt;</p>
+
+<p class=MsoNormal>        &lt;li id=&quot;length&quot;&gt;<span
+style='font-family:"Segoe UI Emoji",sans-serif'>&#10060;</span> At least 8
+characters&lt;/li&gt;</p>
+
+<p class=MsoNormal>        &lt;li id=&quot;uppercase&quot;&gt;<span
+style='font-family:"Segoe UI Emoji",sans-serif'>&#10060;</span> Uppercase
+letter&lt;/li&gt;</p>
+
+<p class=MsoNormal>        &lt;li id=&quot;lowercase&quot;&gt;<span
+style='font-family:"Segoe UI Emoji",sans-serif'>&#10060;</span> Lowercase
+letter&lt;/li&gt;</p>
+
+<p class=MsoNormal>        &lt;li id=&quot;number&quot;&gt;<span
+style='font-family:"Segoe UI Emoji",sans-serif'>&#10060;</span>
+Number&lt;/li&gt;</p>
+
+<p class=MsoNormal>        &lt;li id=&quot;special&quot;&gt;<span
+style='font-family:"Segoe UI Emoji",sans-serif'>&#10060;</span> Special
+character&lt;/li&gt;</p>
+
+<p class=MsoNormal>    &lt;/ul&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;div class=&quot;footer&quot;&gt;</p>
+
+<p class=MsoNormal>        Built with HTML, CSS &amp; JavaScript</p>
+
+<p class=MsoNormal>    &lt;/div&gt;</p>
+
+<p class=MsoNormal>&lt;/div&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;script&gt;</p>
+
+<p class=MsoNormal>const passwordInput =
+document.getElementById(&quot;password&quot;);</p>
+
+<p class=MsoNormal>const strengthBar =
+document.getElementById(&quot;strength-bar&quot;);</p>
+
+<p class=MsoNormal>const strengthText =
+document.getElementById(&quot;strength-text&quot;);</p>
+
+<p class=MsoNormal>const toggleBtn =
+document.getElementById(&quot;toggleBtn&quot;);</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>const checks = {</p>
+
+<p class=MsoNormal>    length: document.getElementById(&quot;length&quot;),</p>
+
+<p class=MsoNormal>    uppercase:
+document.getElementById(&quot;uppercase&quot;),</p>
+
+<p class=MsoNormal>    lowercase:
+document.getElementById(&quot;lowercase&quot;),</p>
+
+<p class=MsoNormal>    number: document.getElementById(&quot;number&quot;),</p>
+
+<p class=MsoNormal>    special: document.getElementById(&quot;special&quot;)</p>
+
+<p class=MsoNormal>};</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>passwordInput.addEventListener(&quot;input&quot;, () =&gt; {</p>
+
+<p class=MsoNormal>    const password = passwordInput.value;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    const conditions = {</p>
+
+<p class=MsoNormal>        length: password.length &gt;= 8,</p>
+
+<p class=MsoNormal>        uppercase: /[A-Z]/.test(password),</p>
+
+<p class=MsoNormal>        lowercase: /[a-z]/.test(password),</p>
+
+<p class=MsoNormal>        number: /\d/.test(password),</p>
+
+<p class=MsoNormal>        special: /[^A-Za-z0-9]/.test(password)</p>
+
+<p class=MsoNormal>    };</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    let score = 0;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    Object.keys(conditions).forEach(key =&gt; {</p>
+
+<p class=MsoNormal>        if (conditions[key]) {</p>
+
+<p class=MsoNormal>            score++;</p>
+
+<p class=MsoNormal>            checks[key].innerHTML =</p>
+
+<p class=MsoNormal>                &quot;<span style='font-family:"Segoe UI Emoji",sans-serif'>&#9989;</span>
+&quot; + checks[key].textContent.substring(2);</p>
+
+<p class=MsoNormal>        } else {</p>
+
+<p class=MsoNormal>            checks[key].innerHTML =</p>
+
+<p class=MsoNormal>                &quot;<span style='font-family:"Segoe UI Emoji",sans-serif'>&#10060;</span>
+&quot; + checks[key].textContent.substring(2);</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>    });</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    updateStrength(score);</p>
+
+<p class=MsoNormal>});</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>function updateStrength(score) {</p>
+
+<p class=MsoNormal>    let width = &quot;0%&quot;;</p>
+
+<p class=MsoNormal>    let color = &quot;#ccc&quot;;</p>
+
+<p class=MsoNormal>    let text = &quot;None&quot;;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    switch(score){</p>
+
+<p class=MsoNormal>        case 1:</p>
+
+<p class=MsoNormal>            width = &quot;20%&quot;;</p>
+
+<p class=MsoNormal>            color = &quot;#ef4444&quot;;</p>
+
+<p class=MsoNormal>            text = &quot;Very Weak&quot;;</p>
+
+<p class=MsoNormal>            break;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        case 2:</p>
+
+<p class=MsoNormal>            width = &quot;40%&quot;;</p>
+
+<p class=MsoNormal>            color = &quot;#f97316&quot;;</p>
+
+<p class=MsoNormal>            text = &quot;Weak&quot;;</p>
+
+<p class=MsoNormal>            break;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        case 3:</p>
+
+<p class=MsoNormal>            width = &quot;60%&quot;;</p>
+
+<p class=MsoNormal>            color = &quot;#eab308&quot;;</p>
+
+<p class=MsoNormal>            text = &quot;Medium&quot;;</p>
+
+<p class=MsoNormal>            break;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        case 4:</p>
+
+<p class=MsoNormal>            width = &quot;80%&quot;;</p>
+
+<p class=MsoNormal>            color = &quot;#22c55e&quot;;</p>
+
+<p class=MsoNormal>            text = &quot;Strong&quot;;</p>
+
+<p class=MsoNormal>            break;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        case 5:</p>
+
+<p class=MsoNormal>            width = &quot;100%&quot;;</p>
+
+<p class=MsoNormal>            color = &quot;#16a34a&quot;;</p>
+
+<p class=MsoNormal>            text = &quot;Very Strong&quot;;</p>
+
+<p class=MsoNormal>            break;</p>
+
+<p class=MsoNormal>    }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    strengthBar.style.width = width;</p>
+
+<p class=MsoNormal>    strengthBar.style.background = color;</p>
+
+<p class=MsoNormal>    strengthText.textContent = `Strength: ${text}`;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>toggleBtn.addEventListener(&quot;click&quot;, () =&gt; {</p>
+
+<p class=MsoNormal>    passwordInput.type =</p>
+
+<p class=MsoNormal>        passwordInput.type === &quot;password&quot;</p>
+
+<p class=MsoNormal>        ? &quot;text&quot;</p>
+
+<p class=MsoNormal>        : &quot;password&quot;;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    toggleBtn.textContent =</p>
+
+<p class=MsoNormal>        passwordInput.type === &quot;password&quot;</p>
+
+<p class=MsoNormal>        ? &quot;<span style='font-family:"Segoe UI Symbol",sans-serif'>&#128065;</span>&quot;</p>
+
+<p class=MsoNormal>        : &quot;<span style='font-family:"Segoe UI Emoji",sans-serif'>&#128584;</span>&quot;;</p>
+
+<p class=MsoNormal>});</p>
+
+<p class=MsoNormal>&lt;/script&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;/body&gt;</p>
+
+<p class=MsoNormal>&lt;/html&gt;</p>
+
+</div>
+
+</body>
+
+</html>
